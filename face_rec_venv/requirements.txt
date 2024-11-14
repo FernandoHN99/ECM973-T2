@@ -1,0 +1,8 @@
+click==8.1.7
+dlib @ file:///home/maua/Documents/ECM973-T2/face_rec_venv/src/dlib-19.24.6-cp38-cp38-linux_aarch64.whl#sha256=e2f0b14f26c305fe32a62537303796ad24697c616275fdcb8b767cf7450f5db8
+face-recognition==1.3.0
+face-recognition-models @ file:///home/maua/Documents/ECM973-T2/face_rec_venv/src/face_recognition_models-0.3.0-py2.py3-none-any.whl#sha256=3db4d8a057a15643b8672c82a2f95b6958047326ddb270928124e2a038308ffd
+numpy==1.24.4
+opencv-python==4.10.0.84
+pillow==10.4.0
+pkg_resources==0.0.0
