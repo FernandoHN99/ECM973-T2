@@ -21,11 +21,6 @@ def warm_up_encoding():
 def load_known_faces():
     '''Crie aqui a função que carrega as faces conhecidas contidas no arquivo .dat'''
     global known_face_encodings, known_face_metadata
-   #  if os.path.exists('known_faces.dat'):
-   #      with open('known_faces.dat', 'rb') as f:
-   #          known_face_encodings, known_face_metadata = pickle.load(f)
-   #  else:
-   #      known_face_encodings, known_face_metadata = [], []
     try:
         with open("known_faces.dat", "rb") as face_data_file:
             known_face_encodings, known_face_metadata = pickle.load(face_data_file)
@@ -66,7 +61,7 @@ def main_loop():
         face_encodings = face_recognition.face_encodings(small_frame, face_locations)
 
         face_labels = []
-        at_home = []
+        at_door = []
 
         for face_encoding, face_location in zip(face_encodings, face_locations):
             metadata = lookup_known_face(face_encoding)
@@ -74,7 +69,7 @@ def main_loop():
                 print(f"Known face detected: {metadata['name']}")
                 time_at_door = datetime.now() - metadata['first_seen_this_interaction']
                 face_label = f"{metadata['name']} {int(time_at_door.total_seconds())}s"
-                at_home.append(metadata["name"])
+                at_door.append(metadata["name"])
                 face_labels.append(face_label)
             else:
                 face_label = "New visitor!"
@@ -96,7 +91,7 @@ def main_loop():
 
         number_of_recent_visitors = 0
         for metadata in known_face_metadata:
-            if metadata["name"] in at_home:
+            if metadata["name"] in at_door:
                 x_position = number_of_recent_visitors * 150
                 frame[30:180, x_position:x_position + 150] = metadata["face_image"]
                 number_of_recent_visitors += 1
