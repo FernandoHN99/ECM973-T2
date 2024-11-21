@@ -21,11 +21,16 @@ def warm_up_encoding():
 def load_known_faces():
     '''Crie aqui a função que carrega as faces conhecidas contidas no arquivo .dat'''
     global known_face_encodings, known_face_metadata
-    if os.path.exists('known_faces.dat'):
-        with open('known_faces.dat', 'rb') as f:
-            known_face_encodings, known_face_metadata = pickle.load(f)
-    else:
-        known_face_encodings, known_face_metadata = [], []
+   #  if os.path.exists('known_faces.dat'):
+   #      with open('known_faces.dat', 'rb') as f:
+   #          known_face_encodings, known_face_metadata = pickle.load(f)
+   #  else:
+   #      known_face_encodings, known_face_metadata = [], []
+    try:
+        with open("known_faces.dat", "rb") as face_data_file:
+            known_face_encodings, known_face_metadata = pickle.load(face_data_file)
+    except FileNotFoundError as e:
+        pass
 
 def lookup_known_face(face_encoding):
     '''Crie aqui a função que verifica se a pessoa é conhecida. USE 0.5 como limiar de comparação'''
